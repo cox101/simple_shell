@@ -6,7 +6,7 @@
  *
  * Return: Nothing
  */
-void print_to_stderr(char *str)
+void _eputs(char *str)
 {
 	int index = 0;
 
@@ -15,7 +15,7 @@ void print_to_stderr(char *str)
 
 	while (str[index] != '\0')
 	{
-		write_char_to_stderr(str[index]);
+		_eputchar(str[index]);
 		index++;
 	}
 }
@@ -27,7 +27,7 @@ void print_to_stderr(char *str)
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
-int write_char_to_stderr(char c)
+int _eputchar(char c)
 {
 	static int buffer_index;
 	static char buffer[WRITE_BUF_SIZE];
@@ -52,7 +52,7 @@ int write_char_to_stderr(char c)
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
-int write_char_to_fd(char c, int fd)
+int _putfd(char c, int fd)
 {
 	static int buffer_index;
 	static char buffer[WRITE_BUF_SIZE];
@@ -76,7 +76,7 @@ int write_char_to_fd(char c, int fd)
  *
  * Return: The number of characters written
  */
-int print_str_to_fd(char *str, int fd)
+int _putsfd(char *str, int fd)
 {
 	int char_count = 0;
 
@@ -85,7 +85,7 @@ int print_str_to_fd(char *str, int fd)
 
 	while (*str)
 	{
-		char_count += write_char_to_fd(*str++, fd);
+		char_count += _putfd(*str++, fd);
 	}
 
 	return (char_count);

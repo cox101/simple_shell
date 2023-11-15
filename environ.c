@@ -8,7 +8,7 @@
  */
 int print_environment(info_t *info)
 {
-    print_list_str(info->environment);
+    print_list_str(info->env);
     return (0);
 }
 
@@ -21,7 +21,7 @@ int print_environment(info_t *info)
  */
 char *get_environment_variable(info_t *info, const char *name)
 {
-    list_t *node = info->environment;
+    list_t *node = info->env;
     char *value;
 
     while (node)
@@ -87,6 +87,6 @@ int populate_environment_list(info_t *info)
 
     for (i = 0; environ[i]; i++)
         add_node_end(&node, environ[i], 0);
-    info->environment = node;
+    info->env = node;
     return 0;
 }

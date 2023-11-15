@@ -38,19 +38,19 @@ char **list_to_strings(list_t *head)
 	if (!strs)
 		return NULL;
 
-	for (size_t i = 0; node; node = node->next, i++)
+	for (size = 0; node; node = node->next, size++)
 	{
 		str = malloc(_strlen(node->str) + 1);
 		if (!str)
 		{
-			for (j = 0; j < i; j++)
+			for (j = 0; j < size; j++)
 				free(strs[j]);
 			free(strs);
 			return NULL;
 		}
 
 		str = _strcpy(str, node->str);
-		strs[i] = str;
+		strs[size] = str;
 	}
 	strs[size] = NULL;
 	return strs;

@@ -111,13 +111,13 @@ typedef struct builtin
 } builtin_table;
 
 
-/* toem_shloop.c */
+/* George and bill_shloop.c */
 int hsh(info_t *, char **);
 int find_builtin(info_t *);
 void find_cmd(info_t *);
 void fork_cmd(info_t *);
 
-/* toem_parser.c */
+/* George and bill_parser.c */
 int is_cmd(info_t *info, char *path);
 char *dup_chars(char *pathstr, int start, int stop);
 char *find_path(info_t *info, char *pathstr, char *cmd);
@@ -125,42 +125,42 @@ char *find_path(info_t *info, char *pathstr, char *cmd);
 /* loophsh.c */
 int loophsh(char **);
 
-/* toem_errors.c */
+/* George and bill_errors.c */
 void _eputs(char *);
 int _eputchar(char);
 int _putfd(char c, int fd);
 int _putsfd(char *str, int fd);
 
-/* toem_string.c */
+/* George and bill_string.c */
 int _strlen(char *);
 int _strcmp(char *, char *);
 char *starts_with(const char *, const char *);
 char *_strcat(char *, char *);
 
-/* toem_string1.c */
+/* George and bill_string1.c */
 char *_strcpy(char *, char *);
 char *_strdup(const char *);
 void _puts(char *);
 int _putchar(char);
 
-/* toem_exits.c */
+/* George and bill_exits.c */
 char *_strncpy(char *, char *, int);
 char *_strncat(char *, char *, int);
 char *_strchr(char *, char);
 
-/* toem_tokenizer.c */
+/* George and bill_tokenizer.c */
 char **strtow(char *, char *);
 char **strtow2(char *, char);
 
-/* toem_realloc.c */
+/* George and bill_realloc.c */
 char *_memset(char *s, char b, unsigned int n);
 void ffree(char **pp);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 
-/* toem_memory.c */
+/* George and bill_memory.c */
 int bfree(void **ptr);
 
-/* toem_atoi.c */
+/* George and bill_atoi.c */
 int interactive(info_t *);
 int is_delim(char, char *);
 int _isalpha(int);
