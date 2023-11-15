@@ -1,6 +1,7 @@
 #include "shell.h"
 
 /**
+ * Code by George and bill
  * input_buf - buffers chained commands
  * @info: parameter struct
  * @buf: address of buffer

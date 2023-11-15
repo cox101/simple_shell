@@ -1,6 +1,7 @@
 #include "shell.h"
 
 /**
+ * Code by George and bill
  * hsh - main shell loop
  * @info: the parameter & return info struct
  * @av: the argument vector from main()
@@ -48,9 +49,9 @@ int hsh(info_t *info, char **av)
  * @info: the parameter & return info struct
  *
  * Return: -1 if builtin not found,
- *          0 if builtin executed successfully,
- *          1 if builtin found but not successful,
- *         -2 if builtin signals exit()
+ *			0 if builtin executed successfully,
+ *			1 if builtin found but not successful,
+ *			-2 if builtin signals exit()
  */
 int find_builtin(info_t *info)
 {
@@ -68,14 +69,12 @@ int find_builtin(info_t *info)
 	};
 
 	for (i = 0; builtintbl[i].type; i++)
-	{
 		if (_strcmp(info->argv[0], builtintbl[i].type) == 0)
 		{
 			info->line_count++;
 			built_in_ret = builtintbl[i].func(info);
 			break;
 		}
-	}
 	return (built_in_ret);
 }
 
@@ -88,6 +87,7 @@ int find_builtin(info_t *info)
 void find_cmd(info_t *info)
 {
 	char *path = NULL;
+	int i, k;
 
 	info->path = info->argv[0];
 	if (info->linecount_flag == 1)
@@ -95,9 +95,10 @@ void find_cmd(info_t *info)
 		info->line_count++;
 		info->linecount_flag = 0;
 	}
-
-	int arg_count = count_non_delim_args(info->arg);
-	if (arg_count == 0)
+	for (i = 0, k = 0; info->arg[i]; i++)
+		if (!is_delim(info->arg[i], " \t\n"))
+			k++;
+	if (!k)
 		return;
 
 	path = find_path(info, _getenv(info, "PATH="), info->argv[0]);
@@ -108,7 +109,8 @@ void find_cmd(info_t *info)
 	}
 	else
 	{
-		if ((interactive(info) || _getenv(info, "PATH=") || info->argv[0][0] == '/') && is_cmd(info, info->argv[0]))
+		if ((interactive(info) || _getenv(info, "PATH=")
+			|| info->argv[0][0] == '/') && is_cmd(info, info->argv[0]))
 			fork_cmd(info);
 		else if (*(info->arg) != '\n')
 		{
@@ -131,51 +133,29 @@ void fork_cmd(info_t *info)
 	child_pid = fork();
 	if (child_pid == -1)
 	{
+		/* TODO: PUT ERROR FUNCTION */
 		perror("Error:");
 		return;
 	}
 	if (child_pid == 0)
 	{
-		child_process(info);
+		if (execve(info->path, info->argv, get_environ(info)) == -1)
+		{
+			free_info(info, 1);
+			if (errno == EACCES)
+				exit(126);
+			exit(1);
+		}
+		/* TODO: PUT ERROR FUNCTION */
 	}
 	else
 	{
-		parent_process(info, child_pid);
+		wait(&(info->status));
+		if (WIFEXITED(info->status))
+		{
+			info->status = WEXITSTATUS(info->status);
+			if (info->status == 126)
+				print_error(info, "Permission denied\n");
+		}
 	}
 }
-
-/**
- * child_process - code executed by the child process
- * @info: the parameter & return info struct
- *
- * Return: void
- */
-void child_process(info_t *info)
-{
-	if (execve(info->path, info->argv, get_environ(info)) == -1)
-	{
-		free_info(info, 1);
-		if (errno == EACCES)
-			exit(126);
-		exit(1);
-	}
-}
-
-/**
- * parent_process - code executed by the parent process
- * @info: the parameter & return info struct
- * @child_pid: the child process ID
- *
- * Return: void
- */
-void parent_process(info_t *info, pid_t child_pid)
-{
-	waitpid(child_pid, &(info->status), 0);
-	if (WIFEXITED(info->status))
-	{
-		info->status = WEXITSTATUS(info->status);
-		if (info->status == 126)
-			print_error(info, "Permission denied\n");
-	}
-}
-
