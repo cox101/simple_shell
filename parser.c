@@ -34,15 +34,13 @@ int is_cmd(info_t *info, char *path)
  */
 char *dup_chars(char *pathstr, int start, int stop)
 {
+    int i = 0, k = 0;
     char *buf = malloc(MAX_PATH_LENGTH);
     if (!buf)
     {
         perror("Memory allocation error in dup_chars");
         exit(EXIT_FAILURE);
     }
-
-    int i = 0;
-    int k = 0;
 
     for (k = 0, i = start; i < stop; i++)
         if (pathstr[i] != ':')
