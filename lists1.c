@@ -33,12 +33,14 @@ char **list_to_strings(list_t *head)
 
 	if (!head || !i)
 		return (NULL);
+
 	strs = malloc(sizeof(char *) * (i + 1));
 	if (!strs)
 		return (NULL);
+
 	for (i = 0; node; node = node->next, i++)
 	{
-		str = malloc(_strlen(node->str) + 1);
+		str = _strdup(node->str);
 		if (!str)
 		{
 			for (j = 0; j < i; j++)
@@ -47,13 +49,11 @@ char **list_to_strings(list_t *head)
 			return (NULL);
 		}
 
-		str = _strcpy(str, node->str);
 		strs[i] = str;
 	}
 	strs[i] = NULL;
 	return (strs);
 }
-
 
 /**
  * print_list - prints all elements of a list_t linked list
@@ -68,8 +68,7 @@ size_t print_list(const list_t *h)
 	while (h)
 	{
 		_puts(convert_number(h->num, 10, 0));
-		_putchar(':');
-		_putchar(' ');
+		_puts(": ");
 		_puts(h->str ? h->str : "(nil)");
 		_puts("\n");
 		h = h->next;
@@ -120,3 +119,4 @@ ssize_t get_node_index(list_t *head, list_t *node)
 	}
 	return (-1);
 }
+
