@@ -1,6 +1,10 @@
 #include "shell.h"
 
 /**
+<<<<<<< HEAD
+=======
+ * Code by George and bill
+>>>>>>> 86f134ce78546d3b1376b7ad990c9e8bf138c5da
  * _myhistory - displays the history list, one command by line, preceded
  *              with line numbers, starting at 0.
  * @info: Structure containing potential arguments. Used to maintain
@@ -113,4 +117,7 @@ int _myalias(info_t *info)
 
 	return (0);
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 86f134ce78546d3b1376b7ad990c9e8bf138c5da

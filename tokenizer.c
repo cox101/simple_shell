@@ -1,6 +1,7 @@
 #include "shell.h"
 
 /**
+ *Code by George and bill
  * **strtow - splits a string into words. Repeat delimiters are ignored
  * @str: the input string
  * @d: the delimeter string

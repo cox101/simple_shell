@@ -1,6 +1,10 @@
 #include "shell.h"
 
 /**
+<<<<<<< HEAD
+=======
+ * Code by George and bill
+>>>>>>> 86f134ce78546d3b1376b7ad990c9e8bf138c5da
  * _myenv - prints the current environment
  * @info: Structure containing potential arguments. Used to maintain
  *          constant function prototype.

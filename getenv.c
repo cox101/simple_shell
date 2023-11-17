@@ -1,6 +1,10 @@
 #include "shell.h"
 
 /**
+<<<<<<< HEAD
+=======
+ * Code by George and bill
+>>>>>>> 86f134ce78546d3b1376b7ad990c9e8bf138c5da
  * get_environ - returns the string array copy of our environ
  * @info: Structure containing potential arguments. Used to maintain
  *          constant function prototype.
@@ -91,4 +95,7 @@ int _setenv(info_t *info, char *var, char *value)
 	info->env_changed = 1;
 	return (0);
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 86f134ce78546d3b1376b7ad990c9e8bf138c5da

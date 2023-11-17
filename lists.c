@@ -1,6 +1,10 @@
 #include "shell.h"
 
 /**
+<<<<<<< HEAD
+=======
+ * Code by George and bill
+>>>>>>> 86f134ce78546d3b1376b7ad990c9e8bf138c5da
  * add_node - adds a node to the start of the list
  * @head: address of pointer to head node
  * @str: str field of node
