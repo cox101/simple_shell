@@ -6,36 +6,38 @@
  *
  * Return: integer length of string
  */
-int _strlen(const char *s)
+int _strlen(char *s)
 {
-    if (!s)
-        return 0;
+	int i = 0;
 
-    int length = 0;
-    while (*s++)
-        length++;
+	if (!s)
+		return (0);
 
-    return length;
+	while (*s++)
+		i++;
+	return (i);
 }
 
 /**
- * _strcmp - performs lexicographic comparison of two strings.
- * @s1: the first string
- * @s2: the second string
+ * _strcmp - performs lexicogarphic comparison of two strangs.
+ * @s1: the first strang
+ * @s2: the second strang
  *
  * Return: negative if s1 < s2, positive if s1 > s2, zero if s1 == s2
  */
-int _strcmp(const char *s1, const char *s2)
+int _strcmp(char *s1, char *s2)
 {
-    while (*s1 && *s2)
-    {
-        if (*s1 != *s2)
-            return (*s1 - *s2);
-        s1++;
-        s2++;
-    }
-
-    return (*s1 - *s2);
+	while (*s1 && *s2)
+	{
+		if (*s1 != *s2)
+			return (*s1 - *s2);
+		s1++;
+		s2++;
+	}
+	if (*s1 == *s2)
+		return (0);
+	else
+		return (*s1 < *s2 ? -1 : 1);
 }
 
 /**
@@ -43,17 +45,14 @@ int _strcmp(const char *s1, const char *s2)
  * @haystack: string to search
  * @needle: the substring to find
  *
- * Return: address of the next character of haystack or NULL
+ * Return: address of next char of haystack or NULL
  */
 char *starts_with(const char *haystack, const char *needle)
 {
-    while (*needle)
-    {
-        if (*needle++ != *haystack++)
-            return NULL;
-    }
-
-    return (char *)haystack;
+	while (*needle)
+		if (*needle++ != *haystack++)
+			return (NULL);
+	return ((char *)haystack);
 }
 
 /**
@@ -63,17 +62,14 @@ char *starts_with(const char *haystack, const char *needle)
  *
  * Return: pointer to destination buffer
  */
-char *_strcat(char *dest, const char *src)
+char *_strcat(char *dest, char *src)
 {
-    char *ret = dest;
+	char *ret = dest;
 
-    while (*dest)
-        dest++;
-
-    while (*src)
-        *dest++ = *src++;
-
-    *dest = *src;
-    return ret;
+	while (*dest)
+		dest++;
+	while (*src)
+		*dest++ = *src++;
+	*dest = *src;
+	return (ret);
 }
-
