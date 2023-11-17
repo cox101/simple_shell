@@ -116,6 +116,7 @@ int hsh(info_t *info, char **av);
 int find_builtin(info_t *info);
 void find_cmd(info_t *info);
 void fork_cmd(info_t *info);
+ssize_t get_input(info_t *info);
 
 /* toem_parser.c */
 int is_cmd(info_t *info, char *path);
@@ -141,7 +142,7 @@ char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
 char *_strdup(const char *str);
 void _puts(char *str);
-int _putchar(char c)'
+int _putchar(char c);
 
 /* toem_exits.c */
 char *_strncpy(char *dest, char *src, int n);
